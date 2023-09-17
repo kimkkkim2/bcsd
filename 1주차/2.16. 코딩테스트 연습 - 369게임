@@ -1,0 +1,12 @@
+using System;
+
+public class Solution {
+    public int solution(int order) {
+        int answer = 0;
+        string s = "" + order;
+        for(int i = 0; i<s.Length; i++)
+            if((s[i] == '3')||(s[i] == '6')||(s[i] == '9'))
+                answer++;
+        return answer;
+    }
+}
