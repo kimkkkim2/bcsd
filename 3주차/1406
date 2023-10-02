@@ -1,0 +1,63 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+
+namespace _1406
+{
+    
+    class Program
+    {
+        static void Main()
+        {
+            string str = Console.ReadLine();
+            int M = int.Parse(Console.ReadLine());
+            StringBuilder sb = new StringBuilder();           
+            
+            LinkedList<char> list = new LinkedList<char>(str.ToCharArray());        
+            list.AddLast('\0');     
+            LinkedListNode<char> node = list.Last;
+            
+
+            for (int i = 0; i < M; i++)
+            {
+                string input = Console.ReadLine();
+                char command = input[0];
+                switch (command)
+                {
+                    case 'L':
+                        if (node.Previous != null)
+                            node = node.Previous;
+                        break;
+
+                    case 'D':
+                        if (node.Next != null)
+                            node = node.Next;
+                        break;
+
+                    case 'B':
+                        if (node.Previous != null)
+                        {
+                            list.Remove(node.Previous);
+                        }
+                        break;
+
+                    case 'P':
+                        var n = list.AddBefore(node, input[2]);
+                        break;
+                }
+            }
+
+            
+            LinkedListNode<char> temp = list.First;
+            while (temp.Value != '\0')
+            {
+                sb.Append(temp.Value);
+                temp = temp.Next;
+            }
+
+            Console.Write(sb.ToString());
+        
+        }
+    }
+}
